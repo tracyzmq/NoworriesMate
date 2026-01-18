@@ -1,0 +1,15 @@
+NoWorriesMate/          (你的项目文件夹)
+├── app.js
+├── app.json
+├── app.wxss
+├── project.config.json
+├── pages/
+│   └── index/
+│       ├── index.js
+│       ├── index.json
+│       ├── index.wxml
+│       └── index.wxss
+└── images/              (存放你的图标和背景图，需自己准备)
+    ├── icon-checked.png   (已勾选图标)
+    ├── icon-unchecked.png (未勾选图标)
+    └── share-bg.jpg       (分享图片背景)
