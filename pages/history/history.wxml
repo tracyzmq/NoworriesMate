@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="header">
+    <text class="title">积极行为记录</text>
+    <view class="clear-btn" bindtap="clearAllHistory" wx:if="{{historyList.length > 0}}">清空</view>
+  </view>
+
+  <!-- 统计摘要 -->
+  <view class="summary-card" wx:if="{{historyList.length > 0}}">
+    <view class="summary-item">
+      <text class="summary-number">{{historyList.length}}</text>
+      <text class="summary-label">打卡天数</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-number">{{totalMerits}}</text>
+      <text class="summary-label">积极行为总数</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-number">{{averagePerDay}}</text>
+      <text class="summary-label">日均行为数</text>
+    </view>
+  </view>
+
+  <!-- 导航按钮 -->
+  <view class="nav-section">
+    <button class="nav-btn" bindtap="goToHome">返回首页</button>
+    <button class="nav-btn" bindtap="goToProfile">个人中心</button>
+  </view>
+
+  <view class="history-list">
+    <view class="history-item" wx:for="{{historyList}}" wx:key="index">
+      <view class="timeline-dot"></view>
+      <view class="history-content">
+        <view class="date-section">
+          <text class="date">{{item.date}}</text>
+          <text class="merit-count">积极行为 +{{item.positiveBehaviorCount !== undefined ? item.positiveBehaviorCount : item.checkedItems.length}}</text>
+        </view>
+        <view class="items-list">
+          <view class="item" wx:for="{{item.checkedItems}}" wx:key="index2">
+            <text class="item-text">• {{item.text}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{historyList.length === 0}}">
+      <view class="empty-image"></view>
+      <text class="empty-text">暂无记录，快去首页完成一些积极行为吧</text>
+    </view>
+  </view>
+</view>

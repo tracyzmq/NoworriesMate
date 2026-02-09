@@ -1,109 +1,301 @@
-/* 页面整体样式 */
+/* pages/index/index.wxss */
+page {
+	background-color: #3aaaf8;
+	/* 背景蓝 */
+	font-family: sans-serif;
+	overflow-x: hidden;
+}
+
 .container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #fdfcfb 0%, #f5f7fa 100%);
-  padding: 30rpx;
-  box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 120rpx;
+	/* 留出顶部空间 */
+	padding-bottom: 60rpx;
+	box-sizing: border-box;
+	min-height: 100vh;
 }
 
-/* 标题样式 */
-.header {
-  text-align: center;
-  margin-bottom: 60rpx;
-}
-.title {
-  display: block;
-  font-size: 56rpx;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10rpx;
-}
-.subtitle {
-  font-size: 24rpx;
-  color: #999;
+.timg {
+	width: 70vw;
+	height: 40vw;
+	z-index: 10;
 }
 
-/* 清单容器 */
-.list-container {
-  background: white;
-  border-radius: 20rpx;
-  padding: 40rpx;
-  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
-  margin-bottom: 50rpx;
+/* --- 列表卡片 --- */
+.list-card {
+	width: 650rpx;
+	background-color: #fcfcf2;
+	/* 米色背景 */
+	border: 6rpx solid #000;
+	border-radius: 30rpx;
+	padding: 80rpx 40rpx 60rpx 40rpx;
+	/* 上边距留给贴纸 */
+	box-sizing: border-box;
+	box-shadow: 10rpx 10rpx 0 rgba(0, 0, 0, 0.6);
+	position: relative;
+	top: -100rpx;
 }
-.list-title {
-  display: block;
-  font-size: 32rpx;
-  color: #555;
-  margin-bottom: 40rpx;
-  font-weight: bold;
+
+.list-content {
+	display: flex;
+	flex-direction: column;
 }
+
+.bimg {
+	position: absolute;
+	width: 650rpx;
+	right: 20rpx;
+	top: -160rpx;
+	width: 160rpx;
+	height: 160rpx;
+}
+
+.bbtn {
+	width: 650rpx;
+	border-radius: 100px;
+	position: absolute;
+	bottom: -22vw;
+	left: 0;
+}
+
+.bbtn2 {
+	display: block;
+	width: 100% !important;
+	box-sizing: border-box;
+	margin: 0 !important;
+	border-radius: 100px;
+	background: #f7ce04;
+
+	font-weight: bold;
+	letter-spacing: 4rpx;
+	box-shadow: 0 10rpx 0 rgba(255, 255, 255, 1);
+	border: 4rpx solid #000;
+}
+
 .list-item {
-  display: flex;
-  align-items: center;
-  padding: 30rpx 0;
-  border-bottom: 1rpx solid #f0f0f0;
+	display: flex;
+	align-items: center;
+	border-bottom: 4rpx solid #000;
+	padding: 24rpx 0;
+	position: relative;
 }
+
 .list-item:last-child {
-  border-bottom: none;
-}
-.checkbox {
-  width: 44rpx;
-  height: 44rpx;
-  margin-right: 25rpx;
-  flex-shrink: 0;
-}
-.item-text {
-  font-size: 34rpx;
-  color: #333;
-  line-height: 1.5;
-  flex-grow: 1;
-}
-.text-checked {
-  color: #888;
-  text-decoration: line-through;
+	border-bottom: none;
 }
 
-/* 按钮区域 */
-.button-area {
-  text-align: center;
-}
-.share-button {
-  background: linear-gradient(to right, #FFD700, #FFA500);
-  color: #333;
-  font-weight: bold;
-  font-size: 34rpx;
-  border-radius: 50rpx;
-  margin-bottom: 20rpx;
-  box-shadow: 0 8rpx 20rpx rgba(255, 165, 0, 0.3);
-}
-.hint {
-  font-size: 24rpx;
-  color: #999;
-  display: block;
+.list-text {
+	font-size: 28rpx;
+	font-weight: 800;
+	color: #000;
+	margin-left: 20rpx;
+	letter-spacing: 2rpx;
+	flex-wrap: wrap;
 }
 
-/* 图片预览区域 */
-.preview-area {
-  margin-top: 60rpx;
-  text-align: center;
+/* 复选框样式 */
+.checkbox-box {
+	width: 50rpx;
+	height: 50rpx;
+	border: 5rpx solid #000;
+	border-radius: 8rpx;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 }
-.preview-title {
-  display: block;
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 30rpx;
+
+.check-mark {
+	color: #00b64f;
+	/* 绿色对勾 */
+	font-size: 50rpx;
+	font-weight: bold;
+	line-height: 1;
+	margin-top: -10rpx;
 }
-.preview-image {
-  width: 100%;
-  border-radius: 20rpx;
-  box-shadow: 0 15rpx 40rpx rgba(0, 0, 0, 0.1);
-  margin-bottom: 40rpx;
+
+/* 列表里的星星装饰 */
+.green-star {
+	position: absolute;
+	right: 10rpx;
+	color: #00b64f;
+	font-size: 50rpx;
 }
-.save-button {
-  background-color: #07c160;
-  color: white;
-  font-size: 32rpx;
-  border-radius: 50rpx;
+
+/* 右下角区域 */
+.sticker-bottom-right {
+	position: absolute;
+	bottom: -60rpx;
+	right: -30rpx;
+	z-index: 20;
+}
+
+.sticker-bottom-right .tag-tuitui {
+	top: -30rpx;
+	left: -40rpx;
+	transform: rotate(15deg);
+}
+
+/* --- 底部按钮 --- */
+.footer-btn {
+	width: 650rpx;
+	height: 120rpx;
+	background-color: #ffd800;
+	border: 6rpx solid #000;
+	border-radius: 60rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 52rpx;
+	font-weight: 900;
+	color: #000;
+	box-shadow: 0 10rpx 0 #fff;
+	/* 下方白色的立体面 */
+	position: relative;
+}
+
+/* 为了完美还原按钮下方的白色立体和黑色描边，这里用伪元素再加一层黑色阴影 */
+.footer-btn::after {
+	content: '';
+	position: absolute;
+	top: 10rpx;
+	left: -6rpx;
+	right: -6rpx;
+	bottom: -16rpx;
+	/* 延伸出去 */
+	border-radius: 60rpx;
+	border: 6rpx solid #000;
+	z-index: -1;
+	background: #fff;
+}
+
+/* 预览弹框遮罩 */
+.preview-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+.preview-mask {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+}
+/* 弹框内容 */
+.preview-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	max-width: 600rpx;
+	background: #fff;
+	border-radius: 16rpx;
+	padding: 20rpx;
+	box-sizing: border-box;
+}
+/* 预览图片 */
+.preview-img {
+	width: 100%;
+	border-radius: 12rpx;
+}
+/* 保存按钮 */
+.save-btn {
+	width: 100%;
+	background: #07c160;
+	color: #fff;
+	border-radius: 40rpx;
+	margin-top: 30rpx;
+	font-size: 32rpx;
+}
+/* 关闭按钮 */
+.close-btn {
+	position: absolute;
+	top: -20rpx;
+	right: -20rpx;
+	width: 60rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	text-align: center;
+	background: #fff;
+	border-radius: 50%;
+	color: #333;
+	font-size: 36rpx;
+	box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 每日语录部分 */
+.nav-section {
+	margin: 0 auto;
+	width: 650rpx;
+	display: flex;
+	justify-content: center;
+}
+
+.nav-buttons {
+	display: flex;
+	gap: 30rpx;
+	width: 100%;
+}
+
+.nav-btn {
+	flex: 1;
+	padding: 20rpx 0;
+	background-color: #f7ce04;
+	border: 4rpx solid #000;
+	border-radius: 50rpx;
+	font-size: 28rpx;
+	color: #000;
+	font-weight: bold;
+}
+
+.daily-quote-section {
+	margin-top: 100rpx;
+	width: 650rpx;
+	background-color: #f9f9f9;
+	border: 4rpx solid #ddd;
+	border-radius: 20rpx;
+	padding: 30rpx;
+	box-sizing: border-box;
+}
+
+.quote-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20rpx;
+}
+
+.quote-icon {
+	font-size: 48rpx;
+	color: #aaa;
+	margin-right: 10rpx;
+}
+
+.quote-title {
+	font-size: 28rpx;
+	color: #666;
+	font-weight: bold;
+}
+
+.quote-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.quote-text {
+	font-size: 30rpx;
+	color: #333;
+	line-height: 1.6;
+	margin-bottom: 10rpx;
+}
+
+.quote-author {
+	font-size: 26rpx;
+	color: #999;
+	text-align: right;
 }

@@ -1,39 +1,57 @@
-<!-- 页面结构：包含标题、清单、生成按钮 -->
 <view class="container">
-  <!-- 标题区 -->
-  <view class="header">
-    <text class="title">今日功德簿</text>
-    <text class="subtitle">(每日零点自动刷新)</text>
-  </view>
+  
+  <image class="timg" src="/images/top.png" mode=""/>
 
-  <!-- 反内耗清单区 -->
-  <view class="list-container">
-    <text class="list-title">请勾选你今天成功做到的“功德”：</text>
-    <!-- 循环渲染清单项 -->
-    <block wx:for="{{checklist}}" wx:key="id">
-      <view class="list-item" bindtap="toggleCheck" data-index="{{index}}">
-        <!-- 根据是否勾选显示不同图标 -->
-        <image class="checkbox" src="{{item.checked ? iconChecked : iconUnchecked}}" mode="aspectFill"></image>
-        <text class="item-text {{item.checked ? 'text-checked' : ''}}">{{item.text}}</text>
-      </view>
-    </block>
-  </view>
+ <view class="list-card" id="source-content">
 
-  <!-- 行动按钮区 -->
-  <view class="button-area">
-    <button class="share-button" bindtap="generateImage" loading="{{loading}}">
-      {{loading ? '生成中...' : '🔥 功德圆满，一键显圣 🔥'}}
-    </button>
-    <text class="hint">(生成后可保存并分享至朋友圈)</text>
-  </view>
-
-  <!-- 生成的图片预览区（默认隐藏） -->
-  <view class="preview-area" wx:if="{{imagePath}}">
-    <text class="preview-title">你的今日功德报告：</text>
-    <image class="preview-image" src="{{imagePath}}" mode="widthFix"></image>
-    <button class="save-button" bindtap="saveImage">💾 保存图片</button>
+   <view class="list-content">
+     <block wx:for="{{checklist}}" wx:key="index">
+       <view class="list-item" bindtap="toggleCheck" data-index="{{index}}">
+         <view class="checkbox-box">
+           <view wx:if="{{item.checked}}" class="check-mark">✔</view>
+         </view>
+         <text class="list-text">{{item.text}}</text>
+         <view wx:if="{{index === 1}}" class="green-star">✦</view>
+       </view>
+     </block>
+   </view>
+   
+   <view class="bbtn" wx:if="{{btnShow}}">
+     <button class="bbtn2" loading="{{loading}}" bindtap="generateImage">{{loading ? '生成中...' : '生成今日报告'}}</button>
+     <image class="bimg" src="/images/bom.png" mode=""/>
+   </view>
+ </view>
+  <!-- 每日语录 -->
+  <view class="daily-quote-section">
+    <view class="quote-header">
+      <text class="quote-icon">❝</text>
+      <text class="quote-title">今日减压语录</text>
+    </view>
+    <view class="quote-content">
+      <text class="quote-text">{{dailyQuote.content}}</text>
+      <text class="quote-author">—— {{dailyQuote.author}}</text>
+    </view>
   </view>
 </view>
+  <!-- 导航按钮区域 -->
+  <view class="nav-section">
+    <view class="nav-buttons">
+      <button class="nav-btn" bindtap="goToHistory">查看历史记录</button>
+      <button class="nav-btn" bindtap="goToProfile">个人中心</button>
+    </view>
+  </view>
+  <view style="height: 100rpx;"></view>
+<!-- 图片预览弹框 -->
+<view class="preview-modal" wx:if="{{showPreview}}">
+ <view class="preview-mask" bindtap="closePreview"></view>
+ <view class="preview-content">
+   <!-- 预览图片 -->
+   <image style="width: 100%" class="preview-img" src="{{previewImagePath}}" mode="widthFix" bindtap="previewImageFull"></image>
+   <!-- 保存按钮 -->
+   <button class="save-btn" bindtap="saveImage">保存到相册</button>
+   <!-- 关闭按钮 -->
+   <view class="close-btn" bindtap="closePreview">✕</view>
+ </view>
+</view>
 
-<!-- 用于生成图片的画布，必须设置宽高且隐藏 -->
-<canvas style="width:750px;height:1334px;position:fixed;top:100%;left:100%;" canvas-id="shareCanvas"></canvas>
+<canvas style="width:750px;height:1334px;position:fixed;top:-9999rpx; left:-9999rpx;" canvas-id="shareCanvas"></canvas>

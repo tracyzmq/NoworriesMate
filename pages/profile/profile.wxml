@@ -1,0 +1,68 @@
+<view class="container">
+  <!-- 头部用户信息区域 -->
+  <view class="user-section">
+    <view class="user-avatar" bindtap="getUserProfile" wx:if="{{!hasUserInfo}}">
+      <view class="avatar-placeholder"></view>
+      <text class="login-prompt">点击头像登录</text>
+    </view>
+    <view class="user-info" wx:else>
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user-details">
+        <text class="nickname">{{userInfo.nickName}}</text>
+        <text class="user-level">心理健康守护者 Lv.{{calculateLevel(dailyStats.totalPositiveBehaviors)}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据统计区域 -->
+  <view class="stats-section">
+    <view class="stat-item">
+      <view class="stat-circle">
+        <text class="stat-number">{{dailyStats.totalDays}}</text>
+        <text class="stat-label">打卡天数</text>
+      </view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-circle">
+        <text class="stat-number">{{dailyStats.continuousDays}}</text>
+        <text class="stat-label">连续天数</text>
+      </view>
+    </view>
+    <view class="stat-item">
+      <view class="stat-circle">
+        <text class="stat-number">{{dailyStats.totalPositiveBehaviors}}</text>
+        <text class="stat-label">积极行为</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="function-list">
+    <view class="function-item" bindtap="navigateToHistory">
+      <text class="function-text">历史记录</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="function-item" bindtap="goToHome">
+      <text class="function-text">返回首页</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="function-item" bindtap="showAchievements">
+      <text class="function-text">成就系统</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="function-item" bindtap="showTips">
+      <text class="function-text">心理健康小贴士</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 心理健康小贴士 -->
+  <view class="health-tip">
+    <view class="tip-header">
+      <text class="tip-title">今日心理小贴士</text>
+    </view>
+    <view class="tip-content">
+      <text class="tip-text">{{healthTip}}</text>
+    </view>
+  </view>
+</view>
